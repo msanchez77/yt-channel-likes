@@ -1,0 +1,49 @@
+{
+
+  "manifest_version": 2,
+  "name": "YouTube Channel Likes",
+  "version": "1.0",
+
+  "description": "Adds a Liked Videos playlist to a YouTube Channel Page consisting of videos that the user has liked from that specific channel.",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "addon@example.com",
+      "strict_min_version": "42.0" 
+    }
+  },
+
+  "icons": {
+    "48": "icons/crown-7.png"
+  },
+
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "identity",
+    "notifications",
+    "http://www.youtube.com/*",
+    "https://www.youtube.com/*",
+    "*://www.googleapis.com/*",
+    "*://accounts.google.com/*"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/@*"],
+      "js": ["content_scripts/yt_likes.js"],
+      "run_at": "document_end"
+    }
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/crown-7.png",
+    "default_title": "YouTube Auth",
+    "default_popup": "popup/yt_auth.html"
+  },
+
+  "options_ui": {
+    "page": "options/options.html"
+  }
+
+}
