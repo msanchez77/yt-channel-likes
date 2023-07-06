@@ -1,8 +1,13 @@
 /* exported getAccessToken */
 
+// Redirect URL can be found from the extension's options page [about:addons]
 const REDIRECT_URL = browser.identity.getRedirectURL();
+// OAUTH 2.0 Client IDs
 const CLIENT_ID = "248557910266-cmaeaf0u0frot3s5tbv93jmpkj1du9as.apps.googleusercontent.com";
-const SCOPES = ["https://www.googleapis.com/auth/youtube.readonly"];
+const SCOPES = [
+  "https://www.googleapis.com/auth/youtube.readonly", 
+  "https://www.googleapis.com/auth/youtube"
+];
 const AUTH_URL =
 `https://accounts.google.com/o/oauth2/auth\
 ?client_id=${CLIENT_ID}\

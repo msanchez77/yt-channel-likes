@@ -17,15 +17,21 @@ waitForElementToDisplay('#channel-header #meta').then((element) => {
   
   const p = document.createElement("p");
   p.textContent = "Hola";
-
+  
   element.appendChild(p);
 
 });
 
 browser.runtime.onMessage.addListener((request) => {
   // Logging from the content script will only show in the browser console
-  // Logging from the background script will only show in the extension console
-  console.log("Message from the background script:");
-  console.log(request.greeting); // "Hi from background script"
-  return Promise.resolve({ response: "Hi from content script" });
+  console.log(request.greeting); // Confirmation that the user has been authorized
+  
+  // Get the channel ID from the page and send to the background script
+  let metaTag = document.querySelector('meta[itemprop="channelId"]');
+  let channelId = metaTag.content;  
+  console.log(channelId);
+
+  return Promise.resolve({ response: channelId });
 });
+
+// browser.runtime.sendMessage

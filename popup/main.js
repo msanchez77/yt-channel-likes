@@ -1,6 +1,8 @@
 import { getAccessToken } from "./authorize.js";
 import { getUserInfo } from "./userInfo.js";  
 
+import { handleData } from "./data/handleData.js";
+
 function onError(error) {
   console.error(`Error: ${error}`);
 }
@@ -38,9 +40,9 @@ function logError(error) {
 
 /**
 When the button's clicked:
-- get an access token using the identity API
-- use it to get the user's info
-- show a notification containing some of it
+- get an access token using the identity API (authorize.js)
+- use it to get the user's info (userInfo.js)
+- show a notification containing some of it (main.js)
 */
 document.querySelector("button").addEventListener("click", () => {
   getAccessToken()
@@ -49,7 +51,5 @@ document.querySelector("button").addEventListener("click", () => {
     .catch(logError);
 });
 
-// Agenda 4/11
-// -- 1. Get the user's liked videos (start with first 50 results)
-// -- 2. Send that data to the content script
-// -- 3. Add a simple message of the latest liked video to the page
+// Agenda 4/13
+// -- 1. Add a simple message of the latest liked video to the page
